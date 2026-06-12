@@ -34,11 +34,12 @@ func hit():
 
 func applyDamage(body):
 	if body.is_in_group("Enemies") and body.has_method("projectileHit"):
-			body.projectileHit(damage, direction)
-			
+		body.projectileHit(damage, direction)
+	if body.is_in_group("Player") and body.has_method("projectileHit"):
+		body.projectileHit(damage, direction)
 	if body.is_in_group("HitableObjects") and body.has_method("projectileHit"):
 		body.projectileHit(damage, direction)
-	
+
 func explode():
 	#this function is visual and audio only, it doesn't affect the gameplay
 	weaponSoundManagement(explosionSound)

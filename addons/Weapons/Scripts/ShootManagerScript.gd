@@ -124,6 +124,10 @@ func hitscanShot(pointOfCollisionHitscan : Vector3):
 				finalDamage = cW.damagePerProj * cW.headshotDamageMult * cW.damageDropoff.sample(pointOfCollisionHitscan.distance_to(global_position) / cW.maxRange)
 				collider.hitscanHit(finalDamage, hitscanBulletDirection, hitscanBulletCollision.position)
 		
+		elif collider.is_in_group("Player") and collider.has_method("hitscanHit"):
+				finalDamage = cW.damagePerProj * cW.damageDropoff.sample(pointOfCollisionHitscan.distance_to(global_position) / cW.maxRange)
+				collider.hitscanHit(finalDamage, hitscanBulletDirection, hitscanBulletCollision.position)
+		
 		elif collider.is_in_group("HitableObjects") and collider.has_method("hitscanHit"): 
 			finalDamage = cW.damagePerProj * cW.damageDropoff.sample(pointOfCollisionHitscan.distance_to(global_position) / cW.maxRange)
 			collider.hitscanHit(finalDamage/6.0, hitscanBulletDirection, hitscanBulletCollision.position)
