@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=4 uid="uid://brrt2nbw6l3o0"]
+[gd_scene load_steps=17 format=4 uid="uid://brrt2nbw6l3o0"]
 
 [ext_resource type="Script" uid="uid://dkotya633hevy" path="res://addons/Targets/Scripts/enemytest.gd" id="1_0rpke"]
 [ext_resource type="Texture2D" uid="uid://cbr0w1ctijpoj" path="res://addons/Targets/Models/ShootingRangeTarget/textures/Material.004_baseColor.png" id="2_ovbtr"]
@@ -6,6 +6,9 @@
 [ext_resource type="Script" uid="uid://cg2nmk82m7krg" path="res://addons/Targets/Scripts/AIStateMachineScript.gd" id="4_ieiya"]
 [ext_resource type="Script" uid="uid://dghy07p7yuyr7" path="res://addons/Targets/Scripts/AIIdleStateScript.gd" id="5_ieiya"]
 [ext_resource type="Script" uid="uid://b2kc65oqodp1i" path="res://addons/Targets/Scripts/AIMoveStateScript.gd" id="6_ieiya"]
+[ext_resource type="Script" uid="uid://c7mc3qt1qk5ct" path="res://addons/Targets/Scenes/AICombatScript.gd" id="7_0icvu"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_0icvu"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_bexir"]
 resource_name = "Material.004"
@@ -105,8 +108,18 @@ avoidance_enabled = true
 use_3d_avoidance = true
 
 [node name="RayCast3D" type="RayCast3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5.79649, 0)
-target_position = Vector3(0, 0, 20)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5.78265, 0)
+target_position = Vector3(0, 0, 80)
+collision_mask = 3
+hit_from_inside = true
+hit_back_faces = false
+collide_with_areas = true
+
+[node name="ShapeCast3D" type="ShapeCast3D" parent="."]
+transform = Transform3D(10, 0, 0, 0, 15, 0, 0, 0, 10, 0, 0, 0)
+shape = SubResource("SphereShape3D_0icvu")
+target_position = Vector3(0, 0, 0)
+collision_mask = 2
 
 [node name="Target_Material_004_0" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, -0.000816673, 0.999846, 0, -0.0464834, -0.0175664, 0, 1.28003, -0.0358826)
@@ -143,5 +156,6 @@ script = ExtResource("5_ieiya")
 script = ExtResource("6_ieiya")
 
 [node name="CombatState" type="Node" parent="StateMachine"]
+script = ExtResource("7_0icvu")
 
 [node name="HuntState" type="Node" parent="StateMachine"]
