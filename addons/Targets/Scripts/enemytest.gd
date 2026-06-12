@@ -13,6 +13,7 @@ var isDisabled : bool = false
 @onready var navigationAgent : NavigationAgent3D = $NavigationAgent3D
 @onready var stateMachine : Node = $StateMachine
 @onready var Raycast : RayCast3D = $RayCast3D
+@onready var Shapecast: ShapeCast3D = $ShapeCast3D
 
 
 func _ready():
@@ -41,6 +42,7 @@ func projectileHit(damageVal : float, _hitscanDir : Vector3):
 	if health <= 0.0 and !isDisabled:
 		isDisabled = true
 		animManager.play("fall")
+		
 		
 		
 		

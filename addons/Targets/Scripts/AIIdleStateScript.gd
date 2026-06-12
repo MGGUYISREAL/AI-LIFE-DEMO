@@ -1,39 +1,50 @@
-extends State
+extends AIState
 
 class_name AIIdleState
 
 var stateName : String = "AIIdle"
 
-var cR : CharacterBody3D
-var wander_time : float = 0.0
+var cR : EnemyTest
+var player_detected : bool = false
 
+@onready var raycast: RayCast3D = $"../../RayCast3D"
 @export var target: Vector3
 
-func wander():
-	#generate a random point around the character within a certain radius
-	var random_direction = Vector3(randf_range(-1, 1), 0, randf_range(-1, 1)).normalized()
-	target = random_direction
-	wander_time = randf_range(2.0, 5.0) #wander for a random time between 2 and 5 seconds
+var cooldown_duration: float = randf_range(2.0, 5.0)
+var cooldown_time_remaining: float = 0.0
+var in_cooldown: bool = false
 
-	print("wandered to : ", target)
-
-func enter(char_Ref : CharacterBody3D):
-	print("idle")
+func enter(char_Ref : CharacterBody3D) -> void:
+	print("Entering idle")
+	cooldown_time_remaining += cooldown_duration
+	in_cooldown = true
+	
 	cR = char_Ref
+	if raycast and cR:
+		raycast.add_exception(cR)
 
-func update(delta : float):
-	if wander_time <= 0.0:
-		wander()
-	else:
-		wander_time -= delta
+func update(delta : float) -> void:
+	#for move cooldown
+	if in_cooldown:
+		cooldown_time_remaining -= delta
+		if cooldown_time_remaining <= 0.0:
+			in_cooldown = false
 
-func physics_update(delta: float):
+func physics_update(delta: float) -> void:
 	if cR:
-		#move towards the target
-		cR.velocity = lerp(cR.velocity, target * cR.speed, 0.1)
-		#rotate towards the target
-		cR.rotation.y = lerp(cR.rotation.y, atan2(target.x, target.z), 0.05)
+		cR.velocity = Vector3.ZERO
+	
+	playerDetection()
+	transition()
 
-func transition():
-	#Combat transition
-	pass
+func playerDetection() -> void:
+	if raycast.is_colliding():
+		if raycast.get_collider().is_in_group("Player"):
+			player_detected = true
+			print("Player detected")
+
+func transition() -> void:
+	if player_detected:
+		transitioned.emit(self, "CombatState")
+	if in_cooldown == false:
+		transitioned.emit(self, "MoveState")
