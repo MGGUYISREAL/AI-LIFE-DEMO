@@ -64,6 +64,16 @@ var coyoteJumpOn : bool = false
 @onready var jumpGravity : float = (-2.0 * jumpHeight) / (jumpTimeToPeak * jumpTimeToPeak)
 @onready var fallGravity : float = (-2.0 * jumpHeight) / (jumpTimeToFall * jumpTimeToFall)
 
+@export_group("Health variables")
+@export var maxHealth : float = 100.0
+var health : float
+
+@export var fallDamageThreshold : float = 10.0
+@export var fallDamageMultiplier : float = 1.0
+
+@export var fallDamageMinHeight : float = 2.0
+var fallStartY : float = 0.0
+
 @export_group("Keybind variables")
 @export var moveForwardAction : String = ""
 @export var moveBackwardAction : String = ""
@@ -92,6 +102,10 @@ func _ready():
 	jumpCooldownRef = jumpCooldown
 	nbJumpsInAirAllowedRef = nbJumpsInAirAllowed
 	coyoteJumpCooldownRef = coyoteJumpCooldown
+
+	# Initialize health
+	health = maxHealth
+	wasOnFloor = is_on_floor()
 	
 func _process(_delta: float):
 	displayProperties()
@@ -100,7 +114,20 @@ func _physics_process(_delta : float):
 	modifyPhysicsProperties()
 	
 	move_and_slide()
-	
+
+	var onFloor : bool = is_on_floor()
+	# detect the start of fall
+	if wasOnFloor and not onFloor:
+		fallStartY = position.y
+	# detect landing
+	if onFloor and not wasOnFloor:
+		var fallDistance : float = fallStartY - position.y
+		if fallDistance > fallDamageMinHeight:
+			var fallSpeed : float = -lastFrameVelocity.y
+			if fallSpeed > fallDamageThreshold:
+				applyFallDamage((fallSpeed - fallDamageThreshold) * fallDamageMultiplier)
+	wasOnFloor = onFloor
+
 func displayProperties():
 	#display properties on the hud
 	if hud != null:
@@ -113,7 +140,6 @@ func displayProperties():
 func modifyPhysicsProperties():
 	lastFramePosition = position #get play char position every frame
 	lastFrameVelocity = velocity #get play char velocity every frame
-	wasOnFloor = !is_on_floor() #check if play char was on floor every frame
 	
 func gravityApply(delta : float):
 	#if play char goes up, apply jump gravity
@@ -121,6 +147,25 @@ func gravityApply(delta : float):
 	if !is_on_floor():
 		if velocity.y >= 0.0: velocity.y += jumpGravity * delta
 		elif velocity.y < 0.0: velocity.y += fallGravity * delta
+
+# Health and death logic
+func hitscanHit(damageVal : float, _hitscanDir : Vector3, _hitscanPos : Vector3) -> void:
+	health -= damageVal
+	print("Player hit! Health remaining: ", health)
+	if health <= 0.0:
+		get_tree().quit()
+
+func projectileHit(damageVal : float, _hitscanDir : Vector3) -> void:
+	health -= damageVal
+	print("Player projectile hit! Health remaining: ", health)
+	if health <= 0.0:
+		get_tree().quit()
+
+func applyFallDamage(damageVal : float) -> void:
+	health -= damageVal
+	print("Player took fall damage: ", damageVal, " (Health remaining: ", health, ")")
+	if health <= 0.0:
+		get_tree().quit()
 		
 		
 		
