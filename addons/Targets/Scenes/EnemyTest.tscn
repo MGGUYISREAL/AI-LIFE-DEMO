@@ -6,7 +6,7 @@
 [ext_resource type="Script" uid="uid://cg2nmk82m7krg" path="res://addons/Targets/Scripts/AIStateMachineScript.gd" id="4_ieiya"]
 [ext_resource type="Script" uid="uid://dghy07p7yuyr7" path="res://addons/Targets/Scripts/AIIdleStateScript.gd" id="5_ieiya"]
 [ext_resource type="Script" uid="uid://b2kc65oqodp1i" path="res://addons/Targets/Scripts/AIMoveStateScript.gd" id="6_ieiya"]
-[ext_resource type="Script" uid="uid://c7mc3qt1qk5ct" path="res://addons/Targets/Scenes/AICombatScript.gd" id="7_0icvu"]
+[ext_resource type="Script" uid="uid://c7mc3qt1qk5ct" path="res://addons/Targets/Scripts/AIChaseScript.gd" id="7_0icvu"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_0icvu"]
 
@@ -106,6 +106,8 @@ script = ExtResource("1_0rpke")
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
 avoidance_enabled = true
 use_3d_avoidance = true
+avoidance_layers = 3
+avoidance_mask = 3
 
 [node name="RayCast3D" type="RayCast3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5.78265, 0)
@@ -155,7 +157,7 @@ script = ExtResource("5_ieiya")
 [node name="MoveState" type="Node" parent="StateMachine"]
 script = ExtResource("6_ieiya")
 
-[node name="CombatState" type="Node" parent="StateMachine"]
+[node name="ChaseState" type="Node" parent="StateMachine"]
 script = ExtResource("7_0icvu")
 
 [node name="HuntState" type="Node" parent="StateMachine"]

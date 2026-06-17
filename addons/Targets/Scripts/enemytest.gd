@@ -3,6 +3,7 @@ extends CharacterBody3D
 class_name EnemyTest
 
 @export var speed : float = 1.0
+@export var chase_speed : float = 2.0
 @export var health : float = 100.0
 @export var wait_time : float = 0.0
 
@@ -42,13 +43,3 @@ func projectileHit(damageVal : float, _hitscanDir : Vector3):
 	if health <= 0.0 and !isDisabled:
 		isDisabled = true
 		animManager.play("fall")
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		

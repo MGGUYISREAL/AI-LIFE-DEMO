@@ -4,12 +4,14 @@ class_name AIMoveState
 
 var stateName : String = "AIMove"
 
-var target_reached = true
+var target_reached : bool = true
+var player_detected : bool = false
 var cR : EnemyTest
 var patrol_time : float = 0.0
 var remaining_patrol_time : float = 0.0
 
 @onready var target: Vector3
+@onready var raycast: RayCast3D = $"../../RayCast3D"
 
 func patrol():
 	#generate a random point around the character within a certain radius
@@ -42,8 +44,19 @@ func physics_update(delta: float):
 		#rotate towards the target
 		cR.rotation.y = lerp_angle(cR.rotation.y, atan2(target.x, target.z), 0.05)
 		
+		cR.move_and_slide()
+		
+	playerDetection()
 	transition()
+
+func playerDetection() -> void:
+	if raycast.is_colliding():
+		if raycast.get_collider().is_in_group("Player"):
+			player_detected = true
+			print("Player detected")
 
 func transition() -> void:
 	if target_reached:
 		transitioned.emit(self, "IdleState")
+	if player_detected:
+		transitioned.emit(self, "ChaseState")

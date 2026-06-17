@@ -45,6 +45,6 @@ func playerDetection() -> void:
 
 func transition() -> void:
 	if player_detected:
-		transitioned.emit(self, "CombatState")
+		transitioned.emit(self, "ChaseState")
 	if in_cooldown == false:
 		transitioned.emit(self, "MoveState")
