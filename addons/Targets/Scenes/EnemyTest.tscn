@@ -1,12 +1,13 @@
-[gd_scene load_steps=17 format=4 uid="uid://brrt2nbw6l3o0"]
+[gd_scene load_steps=18 format=4 uid="uid://brrt2nbw6l3o0"]
 
-[ext_resource type="Script" uid="uid://dkotya633hevy" path="res://addons/Targets/Scripts/enemytest.gd" id="1_0rpke"]
+[ext_resource type="Script" uid="uid://dkotya633hevy" path="res://addons/Targets/Scripts/EnemyTest.gd" id="1_0rpke"]
 [ext_resource type="Texture2D" uid="uid://cbr0w1ctijpoj" path="res://addons/Targets/Models/ShootingRangeTarget/textures/Material.004_baseColor.png" id="2_ovbtr"]
 [ext_resource type="Script" uid="uid://cnw6x7g8unlvp" path="res://addons/Targets/Scripts/ShootingRangeTargetHeadScript.gd" id="3_011ej"]
 [ext_resource type="Script" uid="uid://cg2nmk82m7krg" path="res://addons/Targets/Scripts/AIStateMachineScript.gd" id="4_ieiya"]
 [ext_resource type="Script" uid="uid://dghy07p7yuyr7" path="res://addons/Targets/Scripts/AIIdleStateScript.gd" id="5_ieiya"]
 [ext_resource type="Script" uid="uid://b2kc65oqodp1i" path="res://addons/Targets/Scripts/AIMoveStateScript.gd" id="6_ieiya"]
-[ext_resource type="Script" uid="uid://c7mc3qt1qk5ct" path="res://addons/Targets/Scripts/AIChaseScript.gd" id="7_0icvu"]
+[ext_resource type="Script" uid="uid://kvhr524mxyye" path="res://addons/Targets/Scripts/AIChaseScript.gd" id="7_0icvu"]
+[ext_resource type="Script" uid="uid://nit0fjue6a1r" path="res://addons/Targets/Scripts/AICombatStateScript.gd" id="8_yfrfc"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_0icvu"]
 
@@ -160,4 +161,5 @@ script = ExtResource("6_ieiya")
 [node name="ChaseState" type="Node" parent="StateMachine"]
 script = ExtResource("7_0icvu")
 
-[node name="HuntState" type="Node" parent="StateMachine"]
+[node name="CombatState" type="Node" parent="StateMachine"]
+script = ExtResource("8_yfrfc")

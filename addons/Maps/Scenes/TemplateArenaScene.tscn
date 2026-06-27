@@ -294,11 +294,93 @@ use_collision = true
 collision_mask = 10
 size = Vector3(10, 3, 7)
 
+[node name="Cover_Spots" type="Node3D" parent="NavigationRegion3D" groups=["AICover_Spots"]]
+
+[node name="Spots" type="Marker3D" parent="NavigationRegion3D/Cover_Spots"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.25205, 0, -11.7853)
+gizmo_extents = 2.93
+
+[node name="Spots2" type="Marker3D" parent="NavigationRegion3D/Cover_Spots"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.18825, 0, -11.7853)
+gizmo_extents = 2.93
+
+[node name="Spots3" type="Marker3D" parent="NavigationRegion3D/Cover_Spots"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.3336, 0, -28.063)
+gizmo_extents = 2.93
+
+[node name="Spots4" type="Marker3D" parent="NavigationRegion3D/Cover_Spots"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.366, 4.76837e-07, -50.9675)
+gizmo_extents = 2.93
+
+[node name="Spots5" type="Marker3D" parent="NavigationRegion3D/Cover_Spots"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.366, 4.76837e-07, -19.9719)
+gizmo_extents = 2.93
+
+[node name="Spots6" type="Marker3D" parent="NavigationRegion3D/Cover_Spots"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.40497, 4.76837e-07, -19.9719)
+gizmo_extents = 2.93
+
+[node name="Spots7" type="Marker3D" parent="NavigationRegion3D/Cover_Spots"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.4007, 4.76837e-07, -30.8392)
+gizmo_extents = 2.93
+
+[node name="Spots8" type="Marker3D" parent="NavigationRegion3D/Cover_Spots"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.33346, 4.76837e-07, -43.6655)
+gizmo_extents = 2.93
+
+[node name="Spots9" type="Marker3D" parent="NavigationRegion3D/Cover_Spots"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.0415, 0, 0.261088)
+gizmo_extents = 2.93
+
+[node name="Spots10" type="Marker3D" parent="NavigationRegion3D/Cover_Spots"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.14685, 0, 4.41285)
+gizmo_extents = 2.93
+
+[node name="Spots11" type="Marker3D" parent="NavigationRegion3D/Cover_Spots"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.9306, 0, 12.2375)
+gizmo_extents = 2.93
+
+[node name="Spots12" type="Marker3D" parent="NavigationRegion3D/Cover_Spots"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.00185, 0, 14.1822)
+gizmo_extents = 2.93
+
+[node name="Spots13" type="Marker3D" parent="NavigationRegion3D/Cover_Spots"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.79398, 0, 17.7244)
+gizmo_extents = 2.93
+
+[node name="Spots14" type="Marker3D" parent="NavigationRegion3D/Cover_Spots"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.99908, 0, 17.7244)
+gizmo_extents = 2.93
+
+[node name="Spots15" type="Marker3D" parent="NavigationRegion3D/Cover_Spots"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.10175, 0, 20.1749)
+gizmo_extents = 2.93
+
+[node name="Spots16" type="Marker3D" parent="NavigationRegion3D/Cover_Spots"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.77394, 0, 27.8895)
+gizmo_extents = 2.93
+
+[node name="Spots17" type="Marker3D" parent="NavigationRegion3D/Cover_Spots"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.1694, 0, 27.8895)
+gizmo_extents = 2.93
+
 [node name="EnemyTest" parent="." instance=ExtResource("5_m3aef")]
 transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 10.6658, 0.509983, -31.6909)
+speed = null
+chase_speed = null
+health = null
+wait_time = null
 
 [node name="EnemyTest2" parent="." instance=ExtResource("5_m3aef")]
 transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 14.3165, 0.509983, -34.7741)
+speed = null
+chase_speed = null
+health = null
+wait_time = null
 
 [node name="EnemyTest3" parent="." instance=ExtResource("5_m3aef")]
 transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 6.6795, 0.509983, -34.7741)
+speed = null
+chase_speed = null
+health = null
+wait_time = null
