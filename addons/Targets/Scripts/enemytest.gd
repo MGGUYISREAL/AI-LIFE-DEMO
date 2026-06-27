@@ -38,7 +38,7 @@ func hitscanHit(damageVal : float, _hitscanDir : Vector3, _hitscanPos : Vector3)
 	
 	if health <= 0.0 and !isDisabled:
 		isDisabled = true
-		animManager.play("fall")
+		_enter_death_state()
 		
 func projectileHit(damageVal : float, _hitscanDir : Vector3):
 	health -= damageVal
@@ -47,4 +47,18 @@ func projectileHit(damageVal : float, _hitscanDir : Vector3):
 	
 	if health <= 0.0 and !isDisabled:
 		isDisabled = true
-		animManager.play("fall")
+		_enter_death_state()
+
+func _enter_death_state() -> void:
+	# Transition the state machine to DeathState so the AI plays the death animation and dies
+	if stateMachine and stateMachine.currState:
+		# Find the DeathState in the state machine's children
+		for child in stateMachine.get_children():
+			if child is AIState and child.stateName == "AIDeath":
+				stateMachine.onStateChildTransition(stateMachine.currState, "DeathState")
+				return
+	
+	# Fallback: if state machine isn't available, play death animation directly
+	animManager.play("fall")
+	await animManager.animation_finished
+	queue_free()

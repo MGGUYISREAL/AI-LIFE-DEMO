@@ -1,10 +1,11 @@
-[gd_scene load_steps=10 format=3 uid="uid://bw5llameb0up"]
+[gd_scene load_steps=11 format=3 uid="uid://bw5llameb0up"]
 
 [ext_resource type="Material" uid="uid://bu7tj6ka05jwg" path="res://addons/Arts/Materials/StructureMaterial1.tres" id="1_lxqck"]
 [ext_resource type="Material" uid="uid://cgn7do4y8jc0o" path="res://addons/Arts/Materials/StructureMaterial2.tres" id="2_4jnrv"]
 [ext_resource type="PackedScene" uid="uid://bwggrf7sbmkcv" path="res://addons/PlayerCharacter/Scenes/PlayerCharacterScene.tscn" id="3_4jnrv"]
 [ext_resource type="PackedScene" uid="uid://d27xhk2ygjsbr" path="res://addons/Targets/Scenes/HitableBoxScene.tscn" id="4_xeiy5"]
 [ext_resource type="PackedScene" uid="uid://brrt2nbw6l3o0" path="res://addons/Targets/Scenes/EnemyTest.tscn" id="5_m3aef"]
+[ext_resource type="Script" uid="uid://dkotya633hevy" path="res://addons/Targets/Scripts/enemytest.gd" id="6_4ip7y"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_4jnrv"]
 sky_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
@@ -364,23 +365,20 @@ gizmo_extents = 2.93
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.1694, 0, 27.8895)
 gizmo_extents = 2.93
 
-[node name="EnemyTest" parent="." instance=ExtResource("5_m3aef")]
+[node name="EnemyTest" type="CharacterBody3D" parent="." groups=["Enemies"] instance=ExtResource("5_m3aef")]
 transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 10.6658, 0.509983, -31.6909)
-speed = null
-chase_speed = null
-health = null
-wait_time = null
+collision_layer = 32
+collision_mask = 31
+script = ExtResource("6_4ip7y")
 
-[node name="EnemyTest2" parent="." instance=ExtResource("5_m3aef")]
+[node name="EnemyTest2" type="CharacterBody3D" parent="." groups=["Enemies"] instance=ExtResource("5_m3aef")]
 transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 14.3165, 0.509983, -34.7741)
-speed = null
-chase_speed = null
-health = null
-wait_time = null
+collision_layer = 32
+collision_mask = 31
+script = ExtResource("6_4ip7y")
 
-[node name="EnemyTest3" parent="." instance=ExtResource("5_m3aef")]
+[node name="EnemyTest3" type="CharacterBody3D" parent="." groups=["Enemies"] instance=ExtResource("5_m3aef")]
 transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 6.6795, 0.509983, -34.7741)
-speed = null
-chase_speed = null
-health = null
-wait_time = null
+collision_layer = 32
+collision_mask = 31
+script = ExtResource("6_4ip7y")

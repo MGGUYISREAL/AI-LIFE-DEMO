@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=4 uid="uid://brrt2nbw6l3o0"]
+[gd_scene load_steps=19 format=4 uid="uid://brrt2nbw6l3o0"]
 
 [ext_resource type="Script" uid="uid://dkotya633hevy" path="res://addons/Targets/Scripts/EnemyTest.gd" id="1_0rpke"]
 [ext_resource type="Texture2D" uid="uid://cbr0w1ctijpoj" path="res://addons/Targets/Models/ShootingRangeTarget/textures/Material.004_baseColor.png" id="2_ovbtr"]
@@ -8,6 +8,7 @@
 [ext_resource type="Script" uid="uid://b2kc65oqodp1i" path="res://addons/Targets/Scripts/AIMoveStateScript.gd" id="6_ieiya"]
 [ext_resource type="Script" uid="uid://kvhr524mxyye" path="res://addons/Targets/Scripts/AIChaseScript.gd" id="7_0icvu"]
 [ext_resource type="Script" uid="uid://nit0fjue6a1r" path="res://addons/Targets/Scripts/AICombatStateScript.gd" id="8_yfrfc"]
+[ext_resource type="Script" uid="uid://bhebb0kl8dh8e" path="res://addons/Targets/Scripts/AIDeathStateScript.gd" id="9_dthst"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_0icvu"]
 
@@ -163,3 +164,6 @@ script = ExtResource("7_0icvu")
 
 [node name="CombatState" type="Node" parent="StateMachine"]
 script = ExtResource("8_yfrfc")
+
+[node name="DeathState" type="Node" parent="StateMachine"]
+script = ExtResource("9_dthst")
